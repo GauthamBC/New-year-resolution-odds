@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Table 1</title>
+</head>
+<body style="margin:0;">
+
+<section class="vi-table-embed brand-actionnetwork" style="max-width:960px;margin:16px auto;
+         font:14px/1.35 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+         color:#181a1f;background:#ffffff;border:1px solid #DCEFE6;border-radius:12px;
+         box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 16px rgba(0,0,0,.09);">
+
+  <style>
+    /* Scope */
+    .vi-table-embed, .vi-table-embed * { box-sizing:border-box; font-family:inherit; }
+
+    .vi-table-embed{
+      --brand-50:#F6FFF9; 
+      --brand-100:#DCF2EB;
+      --brand-300:#BCE5D6;
+      --brand-500:#56C257; 
+      --brand-600:#3FA94B; 
+      --brand-700:#2E8538; 
+      --brand-900:#1F5D28;
+
+      --header-bg:var(--brand-500);
+      --stripe:var(--brand-100);
+      --hover:var(--brand-300);
+      --scroll-track:#f7f8fb;
+      --scroll-thumb:var(--brand-500);
+      --scroll-thumb-hover:var(--brand-600);
+
+      --footer-border:color-mix(in oklab,var(--brand-500) 35%, transparent);
+    }
+
+    /* Brand overrides – reuse palettes from the supermoon widget */
+    .vi-table-embed.brand-vegasinsider{
+      --brand-50:#FFF7DC;
+      --brand-100:#FFE8AA;
+      --brand-300:#FFE8AA;
+      --brand-500:#F2C23A;
+      --brand-600:#D9A72A;   /* matches embed button + requested yellow */
+      --brand-700:#B9851A;
+      --brand-900:#111111;
+      --header-bg:var(--brand-500);
+      --stripe:var(--brand-50);
+      --hover:var(--brand-100);
+      --scroll-thumb:var(--brand-600);
+      --footer-border:color-mix(in oklab,var(--brand-500) 40%, transparent);
+    }
+
+    .vi-table-embed.brand-canadasb{
+      --brand-50:#FEF2F2;
+      --brand-100:#FEE2E2;
+      --brand-300:#FECACA;
+      --brand-500:#EF4444;
+      --brand-600:#DC2626;
+      --brand-700:#B91C1C;
+      --brand-900:#7F1D1D;
+      --header-bg:var(--brand-600);
+      --stripe:var(--brand-50);
+      --hover:var(--brand-100);
+      --scroll-thumb:var(--brand-600);
+      --footer-border:color-mix(in oklab,var(--brand-600) 40%, transparent);
+    }
+
+    .vi-table-embed.brand-rotogrinders{
+      --brand-50:#E8F1FF;
+      --brand-100:#D3E3FF;
+      --brand-300:#9ABCF9;
+      --brand-500:#2F7DF3;
+      --brand-600:#0159D1;
+      --brand-700:#0141A1;
+      --brand-900:#011F54;
+      --header-bg:var(--brand-700);
+      --stripe:var(--brand-50);
+      --hover:var(--brand-100);
+      --scroll-thumb:var(--brand-600);
+      --footer-border:color-mix(in oklab,var(--brand-600) 40%, transparent);
+    }
+
+    /* Header block (title + subtitle stacked) */
+    .vi-table-embed .vi-table-header{
+      padding:10px 16px 8px;
+      border-bottom:1px solid var(--brand-100);
+      background:linear-gradient(90deg,var(--brand-50),#ffffff);
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:2px;
+    }
+    .vi-table-embed .vi-table-header.centered{
+      align-items:center;
+      text-align:center;
+    }
+    .vi-table-embed .vi-table-header .title{
+      margin:0;
+      font-size:clamp(18px,2.3vw,22px);
+      font-weight:750;
+      color:#111827;
+      display:block;
+    }
+    /* Branded title colour – uses brand-600 for every brand */
+    .vi-table-embed .vi-table-header .title.branded{
+      color:var(--brand-600);
+    }
+    .vi-table-embed .vi-table-header .subtitle{
+      margin:0;
+      font-size:13px;
+      color:#6b7280;
+      display:block;
+    }
+
+    /* Container for table block */
+    #bt-block, #bt-block * { box-sizing:border-box; }
+    #bt-block{
+      --bg:#ffffff; --text:#1f2937;
+      --gutter: clamp(8px, 4vw, 14px);
+      --gutter-left: 0;
+      --gutter-right: 0; 
+      --edge-pad: 14px;
+      --table-max-h: 500px;
+      --vbar-w: 6px; --vbar-w-hover: 8px;
+
+      padding: 8px var(--gutter);
+      padding-top: 8px;
+    }
+
+    /* Controls layout: header = search + pager (no logo) */
+    #bt-block .dw-controls{
+      display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center;
+      gap:12px; margin:4px 0 10px 0;
+    }
+    #bt-block .left{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-start}
+    #bt-block .right{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+
+    #bt-block .dw-field{position:relative}
+    #bt-block .dw-input,#bt-block .dw-select,#bt-block .dw-btn{
+      font:14px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; border-radius:10px; padding:8px 10px; transition:.15s ease;
+    }
+    #bt-block .dw-input,#bt-block .dw-select{
+      background:#fff;
+      border:1px solid var(--brand-700);
+      color:var(--text); box-shadow:inset 0 1px 2px rgba(16,24,40,.04);
+    }
+    #bt-block .dw-input{width:min(320px,100%); padding-right:36px}
+    #bt-block .dw-input::placeholder{color:#9AA4B2}
+    #bt-block .dw-input:focus,#bt-block .dw-select:focus{
+      outline:none; border-color:var(--brand-500);
+      box-shadow:0 0 0 3px color-mix(in oklab,var(--brand-500) 25%,transparent); background:#fff;
+    }
+    /* simpler select: remove custom chevron so we don't get duplicate icons */
+    #bt-block .dw-select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      padding-right:26px;
+      background:#fff;
+      background-image:none;
+    }
+
+    #bt-block .dw-btn{
+      background:var(--brand-500); color:#fff; border:1px solid var(--brand-500); padding-inline:12px; cursor:pointer
+    }
+    #bt-block .dw-btn:hover{background:var(--brand-600); border-color:var(--brand-600)} 
+    #bt-block .dw-btn:active{transform:translateY(1px)}
+    #bt-block .dw-btn[disabled]{background:#fafafa; border-color:#d1d5db; color:#6b7280; opacity:1; cursor:not-allowed; transform:none}
+    #bt-block .dw-status{font:12px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:#6b7280}
+    #bt-block .dw-counter{display:none !important;}
+
+    /* Clear button */
+    #bt-block .dw-clear{
+      position:absolute; right:10px; top:50%; translate:0 -50%; width:22px; height:22px; border-radius:9999px; border:0;
+      background:transparent; color:var(--brand-700); cursor:pointer; display:none; align-items:center; justify-content:center;
+    }
+    #bt-block .dw-field.has-value .dw-clear{display:flex}
+    #bt-block .dw-clear:hover{background:var(--brand-100)}
+
+    /* Card & table */
+    #bt-block .dw-card {
+      background: var(--bg);
+      border: 0;
+      box-shadow: none;
+      overflow: hidden;
+      margin: 0;
+      width: 100%;
+    }
+    #bt-block .dw-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    #bt-block .dw-scroll.no-scroll { overflow-x: hidden !important; }
+    #bt-block table.dw-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      background: transparent;
+      min-width: 600px;
+      table-layout: auto;
+    }
+
+    /* Header row */
+    #bt-block thead th{
+      background:var(--header-bg); color:#ffffff; font-weight:700; text-align:center;
+      padding:12px 14px; white-space:nowrap; vertical-align:middle; border:0;
+      transition:background-color .15s, color .15s, box-shadow .15s, transform .05s;
+    }
+    #bt-block thead th.sortable{cursor:pointer; user-select:none}
+    #bt-block thead th.sortable::after{content:"↕"; font-size:12px; opacity:.75; margin-left:8px; color:#ffffff}
+    #bt-block thead th.sortable[data-sort="asc"]::after{content:"▲"}
+    #bt-block thead th.sortable[data-sort="desc"]::after{content:"▼"}
+    #bt-block thead th.sortable:hover,#bt-block thead th.sortable:focus-visible{background:var(--brand-600); color:#fff; box-shadow:inset 0 -3px 0 var(--brand-100)}
+    #bt-block .dw-scroll.scrolled thead th{box-shadow:0 6px 10px -6px rgba(0,0,0,.25)}
+    #bt-block thead th.is-sorted{background:var(--brand-700); color:#fff; box-shadow:inset 0 -3px 0 var(--brand-100)}
+
+    #bt-block thead th,
+    #bt-block tbody td {
+      padding: 12px 10px;
+      overflow: hidden;
+      text-align:center;
+    }
+    #bt-block thead th { white-space: nowrap; }
+
+    #bt-block tbody td:nth-child(2) {
+      white-space: normal;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      min-width: 100px;
+      max-width: 220px;
+      line-height: 1.3;
+    }
+    #bt-block tbody td {
+      background-clip: padding-box;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+
+    /* Body rows – zebra + hover injected here */
+    
+    #bt-block tbody tr:nth-child(odd){background:var(--stripe);}
+    #bt-block tbody tr:nth-child(even){background:#ffffff;}
+
+
+    #bt-block tbody tr:hover{
+      background:var(--hover);
+      box-shadow:inset 3px 0 0 var(--brand-500);
+      transform:translateY(-1px);
+      transition:background-color .12s ease, box-shadow .12s ease, transform .08s ease;
+    }
+
+    #bt-block thead th{position:sticky; top:0; z-index:5}
+
+    /* Scrollbars + height */
+    #bt-block .dw-scroll{
+      max-height:var(--table-max-h,360px); overflow-y:auto;
+      -ms-overflow-style:auto; scrollbar-width:thin; scrollbar-color:var(--scroll-thumb) transparent
+    }
+    #bt-block .dw-scroll::-webkit-scrollbar:horizontal{height:0; display:none}
+    #bt-block .dw-scroll::-webkit-scrollbar:vertical{width:var(--vbar-w)}
+    #bt-block .dw-scroll:hover::-webkit-scrollbar:vertical{width:var(--vbar-w-hover)}
+    #bt-block .dw-scroll::-webkit-scrollbar-thumb{
+      background:var(--scroll-thumb); border-radius:9999px; border:2px solid transparent; background-clip:content-box;
+    }
+
+    /* Empty row */
+    #bt-block tr.dw-empty td{text-align:center; color:#6b7280; font-style:italic; padding:18px 14px; background:linear-gradient(0deg,#fff,var(--brand-50))}
+
+    /* Responsiveness */
+    #bt-block .dw-input { width: clamp(160px, 26vw, 320px); }
+    #bt-block .dw-select { min-width: 68px; }
+    #bt-block .dw-btn { padding-inline: 8px; }
+
+    @media (max-width: 600px){
+      #bt-block .dw-controls{
+        grid-template-columns:minmax(0,1fr) auto;
+        column-gap:8px; row-gap:6px; margin:6px 0 8px;
+      }
+      #bt-block .dw-input{width:100%; padding:6px 24px 6px 10px; height:34px; font-size:13px;}
+      #bt-block .dw-clear{width:20px; height:20px;}
+      #bt-block thead th{ font-size:13px; line-height:1.2; }
+      #bt-block .dw-select{min-width:68px; height:32px; padding:6px 22px 6px 8px; font-size:13px;}
+      #bt-block .dw-btn{width:32px; height:32px; padding:0; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;}
+    }
+
+    /* ========= Footer with logo + embed button ======== */
+    .vi-table-embed .vi-footer {
+      display:block;
+      padding:10px 14px 8px;
+      border-top:1px solid var(--footer-border);
+      background:linear-gradient(90deg,var(--brand-50),#ffffff);
+    }
+    .vi-table-embed .footer-inner{
+      display:flex;
+      justify-content:space-between;  /* button left, logo right */
+      align-items:center;
+      gap:12px;
+      position:relative;
+    }
+    .vi-table-embed .embed-btn {
+      background: var(--brand-600);
+      color: #fff;
+      border: 1px solid var(--brand-600);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font: 13px/1.2 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+      cursor: pointer;
+      transition: .2s ease;
+      white-space:nowrap;
+    }
+    .vi-table-embed .embed-btn:hover {
+      background: var(--brand-700);
+      border-color: var(--brand-700);
+    }
+    .vi-table-embed .vi-footer img{
+      height: 38px;
+      width:auto;
+      display:inline-block;
+    }
+
+    /* Brand-specific logo recolor (Vegas tuned for #D9A72A) */
+    .vi-table-embed.brand-actionnetwork .vi-footer img{
+      filter:
+        brightness(0) saturate(100%)
+        invert(62%) sepia(23%) saturate(1250%) hue-rotate(78deg)
+        brightness(96%) contrast(92%);
+    }
+    .vi-table-embed.brand-vegasinsider .vi-footer img{
+      filter:
+        brightness(0) saturate(100%)
+        invert(72%) sepia(63%) saturate(652%) hue-rotate(6deg)
+        brightness(95%) contrast(101%);
+    }
+    .vi-table-embed.brand-canadasb .vi-footer img{
+      filter:
+        brightness(0) saturate(100%)
+        invert(32%) sepia(85%) saturate(2386%) hue-rotate(347deg)
+        brightness(96%) contrast(104%);
+    }
+    .vi-table-embed.brand-rotogrinders .vi-footer img{
+      filter:
+        brightness(0) saturate(100%)
+        invert(23%) sepia(95%) saturate(1704%) hue-rotate(203deg)
+        brightness(93%) contrast(96%);
+    }
+
+    @media (max-width: 600px){
+      .vi-table-embed .footer-inner{
+        flex-direction:row;
+        justify-content:space-between; /* still opposite ends on mobile */
+        gap:8px;
+      }
+      .vi-table-embed .embed-btn{
+        padding:6px 10px;
+        font-size:12px;
+      }
+    }
+
+    .vi-table-embed.brand-vegasinsider .vi-footer img{ height:32px; }
+    .vi-table-embed.brand-rotogrinders .vi-footer img{ height:32px; }
+
+    .vi-table-embed .embed-wrapper{
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(620px, calc(100% - 24px));
+      display: none;
+      padding: 12px 16px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #fff;
+      color: #111;
+      box-shadow: 0 12px 28px rgba(0,0,0,.18);
+      z-index: 1000;
+    }
+    .vi-table-embed .embed-wrapper textarea{
+      width:100%; height:90px; font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+      color:#111; background:#fff; padding:8px 10px; border:1px solid #ddd; border-radius:8px; resize:none;
+    }
+    .vi-table-embed #bt-copy-status{ display:none; color:#008000; font-size:13px; margin-top:6px; }
+    .vi-table-embed .embed-wrapper::after{
+      content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:-8px;
+      border:8px solid transparent; border-top-color:#fff;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,.08));
+    }
+  </style>
+
+  <!-- Header -->
+  <div class="vi-table-header ">
+    <span class="title branded">Table 1</span>
+    <span class="subtitle">Subheading</span>
+  </div>
+
+  <!-- Table block -->
+  <div id="bt-block" data-dw="table">
+    <div class="dw-controls">
+      <div class="left">
+        <div class="dw-field">
+          <input type="search" class="dw-input" placeholder="Search table…" aria-label="Search table">
+          <button type="button" class="dw-clear" aria-label="Clear search">×</button>
+        </div>
+        <span class="dw-status dw-counter" aria-live="polite"></span>
+      </div>
+
+      <div class="right">
+        <label class="dw-status" for="bt-size" style="margin-right:4px;">Rows/page</label>
+        <select id="bt-size" class="dw-select">
+          <option value="10" selected>10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="0">All</option>
+        </select>
+        <button class="dw-btn" data-page="prev" aria-label="Previous page">‹</button>
+        <button class="dw-btn" data-page="next" aria-label="Next page">›</button>
+      </div>
+    </div>
+
+    <div class="dw-card">
+      <div class="dw-scroll">
+        <table class="dw-table">
+          <thead>
+            <tr>
+              <th scope="col" data-type="num">Rank</th>
+              <th scope="col" data-type="text">State</th>
+              <th scope="col" data-type="text"> Regions</th>
+              <th scope="col" data-type="num">Implied Probability of Breaking a Resolution (%)</th>
+              <th scope="col" data-type="num">American Odds (Moneyline)</th>
+              <th scope="col" data-type="num">Resolution Break Rate (%)</th>
+              <th scope="col" data-type="num">Average Weekly Work Hours </th>
+              <th scope="col" data-type="num">Stress &amp; Well-Being Rank (1 = Best)</th>
+              <th scope="col" data-type="num">Drop in Self-Improvement Searches (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+                        <tr><td>1</td><td>Louisiana</td><td>South</td><td>30.93%</td><td>223</td><td>46.0</td><td>36.5</td><td>29.14</td><td>3.17</td></tr>
+            <tr><td>2</td><td>Nebraska</td><td>Midwest</td><td>29.87%</td><td>235</td><td>47.0</td><td>33.2</td><td>26.71</td><td>4.63</td></tr>
+            <tr><td>3</td><td>Alabama</td><td>South</td><td>28.96%</td><td>245</td><td>46.0</td><td>34.7</td><td>23.14</td><td>5.44</td></tr>
+            <tr><td>4</td><td>Mississippi</td><td>South</td><td>28.43%</td><td>252</td><td>44.5</td><td>34.9</td><td>26.71</td><td>4.67</td></tr>
+            <tr><td>5</td><td>Massachusetts</td><td>Northeast</td><td>27.51%</td><td>264</td><td>44.0</td><td>33.4</td><td>23.57</td><td>6.18</td></tr>
+            <tr><td>6</td><td>Arkansas</td><td>South</td><td>26.59%</td><td>276</td><td>41.0</td><td>34.9</td><td>24.57</td><td>4.75</td></tr>
+            <tr><td>7</td><td>Texas</td><td>South</td><td>25.81%</td><td>287</td><td>42.0</td><td>35.8</td><td>26.43</td><td>8.29</td></tr>
+            <tr><td>8</td><td>Oklahoma</td><td>South</td><td>25.51%</td><td>292</td><td>41.5</td><td>35.0</td><td>26.71</td><td>5.04</td></tr>
+            <tr><td>9</td><td>Montana</td><td>West</td><td>25.45%</td><td>293</td><td>41.0</td><td>32.7</td><td>22.86</td><td>4.32</td></tr>
+            <tr><td>10</td><td>Kansas</td><td>Midwest</td><td>24.77%</td><td>304</td><td>42.0</td><td>33.3</td><td>22.43</td><td>6.36</td></tr>
+            <tr><td>11</td><td>Wisconsin</td><td>Midwest</td><td>24.16%</td><td>314</td><td>41.5</td><td>32.6</td><td>32.86</td><td>3.86</td></tr>
+            <tr><td>12</td><td>West Virginia</td><td>South</td><td>23.95%</td><td>318</td><td>42.0</td><td>35.1</td><td>25.43</td><td>1.41</td></tr>
+            <tr><td>13</td><td>Wyoming</td><td>West</td><td>23.75%</td><td>321</td><td>40.0</td><td>34.5</td><td>26.43</td><td>4.33</td></tr>
+            <tr><td>14</td><td>Missouri</td><td>Midwest</td><td>23.57%</td><td>324</td><td>41.0</td><td>33.2</td><td>25.14</td><td>6.84</td></tr>
+            <tr><td>15</td><td>Colorado</td><td>West</td><td>23.12%</td><td>333</td><td>37.0</td><td>33.3</td><td>38.43</td><td>5.2</td></tr>
+            <tr><td>16</td><td>Washington</td><td>West</td><td>22.50%</td><td>344</td><td>38.0</td><td>34.2</td><td>31.43</td><td>2.77</td></tr>
+            <tr><td>17</td><td>North Carolina</td><td>South</td><td>22.43%</td><td>346</td><td>39.5</td><td>33.9</td><td>33.57</td><td>5.28</td></tr>
+            <tr><td>18</td><td>New Mexico</td><td>West</td><td>21.81%</td><td>358</td><td>38.5</td><td>33.4</td><td>22.0</td><td>2.91</td></tr>
+            <tr><td>19</td><td>Kentucky</td><td>South</td><td>21.66%</td><td>362</td><td>37.5</td><td>35.0</td><td>31.14</td><td>2.9</td></tr>
+            <tr><td>20</td><td>Oregon</td><td>West</td><td>21.49%</td><td>366</td><td>36.0</td><td>33.9</td><td>23.43</td><td>4.02</td></tr>
+            <tr><td>21</td><td>Ohio</td><td>Midwest</td><td>20.96%</td><td>377</td><td>39.0</td><td>34.1</td><td>23.57</td><td>5.73</td></tr>
+            <tr><td>22</td><td>Tennessee</td><td>South</td><td>20.86%</td><td>380</td><td>38.5</td><td>34.6</td><td>30.86</td><td>5.45</td></tr>
+            <tr><td>23</td><td>Pennsylvania</td><td>Northeast</td><td>20.80%</td><td>381</td><td>39.5</td><td>34.1</td><td>16.43</td><td>1.59</td></tr>
+            <tr><td>24</td><td>Utah</td><td>West</td><td>20.73%</td><td>382</td><td>38.5</td><td>33.2</td><td>35.71</td><td>2.27</td></tr>
+            <tr><td>25</td><td>Maine</td><td>Northeast</td><td>20.47%</td><td>388</td><td>35.5</td><td>33.3</td><td>33.14</td><td>7.74</td></tr>
+            <tr><td>26</td><td>Vermont</td><td>Northeast</td><td>20.34%</td><td>392</td><td>34.0</td><td>33.6</td><td>23.0</td><td>5.61</td></tr>
+            <tr><td>27</td><td>Virginia</td><td>South</td><td>20.08%</td><td>398</td><td>38.5</td><td>33.9</td><td>30.71</td><td>0.19</td></tr>
+            <tr><td>28</td><td>Illinois</td><td>Midwest</td><td>19.73%</td><td>407</td><td>37.5</td><td>33.4</td><td>24.43</td><td>4.58</td></tr>
+            <tr><td>29</td><td>North Dakota</td><td>Midwest</td><td>18.92%</td><td>429</td><td>36.5</td><td>35.2</td><td>37.86</td><td>3.29</td></tr>
+            <tr><td>30</td><td>Alaska</td><td>West</td><td>18.68%</td><td>435</td><td>34.5</td><td>33.9</td><td>22.71</td><td>3.86</td></tr>
+            <tr><td>31</td><td>Florida</td><td>South</td><td>17.99%</td><td>456</td><td>37.5</td><td>34.2</td><td>22.29</td><td>5.13</td></tr>
+            <tr><td>32</td><td>Iowa</td><td>Midwest</td><td>17.87%</td><td>460</td><td>35.5</td><td>34.0</td><td>22.0</td><td>6.3</td></tr>
+            <tr><td>33</td><td>Maryland</td><td>South</td><td>17.68%</td><td>466</td><td>38.0</td><td>33.3</td><td>22.14</td><td>6.97</td></tr>
+            <tr><td>34</td><td>Arizona</td><td>West</td><td>17.27%</td><td>479</td><td>35.5</td><td>35.1</td><td>24.57</td><td>1.55</td></tr>
+            <tr><td>35</td><td>Hawaii</td><td>West</td><td>17.22%</td><td>481</td><td>37.5</td><td>33.0</td><td>30.29</td><td>5.96</td></tr>
+            <tr><td>36</td><td>Minnesota</td><td>Midwest</td><td>17.22%</td><td>481</td><td>33.0</td><td>33.1</td><td>17.14</td><td>3.43</td></tr>
+            <tr><td>37</td><td>New Jersey</td><td>Northeast</td><td>17.10%</td><td>485</td><td>38.5</td><td>33.5</td><td>22.14</td><td>-0.45</td></tr>
+            <tr><td>38</td><td>Delaware</td><td>South</td><td>16.11%</td><td>521</td><td>37.5</td><td>32.1</td><td>20.57</td><td>2.73</td></tr>
+            <tr><td>39</td><td>Rhode Island</td><td>Northeast</td><td>16.10%</td><td>521</td><td>35.0</td><td>33.2</td><td>20.86</td><td>3.85</td></tr>
+            <tr><td>40</td><td>Idaho</td><td>West</td><td>15.92%</td><td>528</td><td>33.0</td><td>34.1</td><td>21.0</td><td>2.42</td></tr>
+            <tr><td>41</td><td>California</td><td>West</td><td>14.52%</td><td>589</td><td>34.0</td><td>33.8</td><td>22.14</td><td>3.84</td></tr>
+            <tr><td>42</td><td>Georgia</td><td>South</td><td>14.38%</td><td>595</td><td>36.5</td><td>34.3</td><td>24.43</td><td>3.0</td></tr>
+            <tr><td>43</td><td>New Hampshire</td><td>Northeast</td><td>14.34%</td><td>597</td><td>32.5</td><td>33.3</td><td>24.14</td><td>4.65</td></tr>
+            <tr><td>44</td><td>New York</td><td>Northeast</td><td>13.75%</td><td>627</td><td>33.0</td><td>32.8</td><td>26.86</td><td>3.77</td></tr>
+            <tr><td>45</td><td>Michigan</td><td>Midwest</td><td>13.68%</td><td>632</td><td>31.5</td><td>34.0</td><td>12.57</td><td>2.12</td></tr>
+            <tr><td>46</td><td>Indiana</td><td>Midwest</td><td>13.21%</td><td>657</td><td>32.5</td><td>33.8</td><td>27.29</td><td>1.7</td></tr>
+            <tr><td>47</td><td>South Carolina</td><td>South</td><td>12.35%</td><td>709</td><td>31.5</td><td>33.8</td><td>27.71</td><td>4.0</td></tr>
+            <tr><td>48</td><td>South Dakota</td><td>Midwest</td><td>11.85%</td><td>744</td><td>29.5</td><td>33.3</td><td>22.57</td><td>4.45</td></tr>
+            <tr><td>49</td><td>Nevada</td><td>West</td><td>8.81%</td><td>1035</td><td>29.0</td><td>34.2</td><td>19.86</td><td>4.9</td></tr>
+            <tr><td>50</td><td>Connecticut</td><td>Northeast</td><td>8.79%</td><td>1037</td><td>28.0</td><td>33.5</td><td>21.29</td><td>2.16</td></tr>
+            <tr class="dw-empty" style="display:none;"><td colspan="9">No matches found.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer with logo + embed -->
+  <div class="vi-footer" role="contentinfo">
+    <div class="footer-inner">
+      <button id="bt-embed-btn" class="embed-btn" aria-controls="bt-embed-wrapper" aria-expanded="false">🔗 Embed This Table</button>
+      <img src="https://i.postimg.cc/x1nG117r/AN-final2-logo.png"
+           alt="Action Network logo"
+           width="140" height="auto" loading="lazy" decoding="async" />
+      <div id="bt-embed-wrapper" class="embed-wrapper">
+        <textarea id="bt-embed-code" readonly>&lt;iframe src="https://GauthamBC.github.io/New-year-resolution-odds/branded_table.html"
+  title="Table 1"
+  width="100%" height="700" scrolling="no"
+  style="border:0;" loading="lazy"&gt;&lt;/iframe&gt;</textarea>
+        <p id="bt-copy-status">Embed code copied!</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    const root = document.getElementById('bt-block');
+    if (!root || root.dataset.dwInit === '1') return;
+    root.dataset.dwInit='1';
+
+    const table = root.querySelector('table.dw-table');
+    const tb = table ? table.tBodies[0] : null;
+    const scroller = root.querySelector('.dw-scroll');
+    const controls = root.querySelector('.dw-controls');
+    if(!table || !tb || !scroller || !controls) return;
+
+    // Disable horizontal scrolling if 4 or fewer columns
+    if (table.tHead && table.tHead.rows[0].cells.length <= 4) {
+      scroller.classList.add('no-scroll');
+    }
+
+    const field = controls.querySelector('.dw-field');
+    const searchInput = controls.querySelector('.dw-input');
+    const clearBtn = controls.querySelector('.dw-clear');
+    const statusEl = controls.querySelector('.dw-counter'); // hidden
+    const sizeSel = controls.querySelector('#bt-size');
+    const prevBtn = controls.querySelector('[data-page="prev"]');
+    const nextBtn = controls.querySelector('[data-page="next"]');
+    const emptyRow = tb.querySelector('.dw-empty');
+
+    Array.from(tb.rows).forEach((r,i)=>{ if(!r.classList.contains('dw-empty')) r.dataset.idx=i; });
+
+    let pageSize = parseInt(sizeSel.value,10) || 10;  // 0 = All
+    let page = 1;
+    let filter = '';
+
+    const onScrollShadow = ()=> scroller.classList.toggle('scrolled', scroller.scrollTop > 0);
+    scroller.addEventListener('scroll', onScrollShadow); onScrollShadow();
+
+    const heads = Array.from(table.tHead.rows[0].cells);
+    heads.forEach((th,i)=>{
+      th.classList.add('sortable'); th.setAttribute('aria-sort','none'); th.dataset.sort='none'; th.tabIndex=0;
+      const type = th.dataset.type || 'text';
+      const go = ()=> sortBy(i,type,th);
+      th.addEventListener('click',go);
+      th.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
+    });
+
+    function textOf(tr,i){ return (tr.children[i].innerText||'').trim(); }
+
+    function sortBy(colIdx, type, th){
+      const rows = Array.from(tb.rows).filter(r=>!r.classList.contains('dw-empty'));
+      const current = th.dataset.sort || 'none';
+      const next = current==='none' ? 'asc' : current==='asc' ? 'desc' : 'none';
+
+      heads.forEach(h=>{
+        h.dataset.sort='none';
+        h.setAttribute('aria-sort','none');
+        h.classList.remove('is-sorted');
+      });
+
+      if(next === 'none'){
+        rows.sort((a,b)=>(+a.dataset.idx)-(+b.dataset.idx));
+        rows.forEach(r=>tb.insertBefore(r, emptyRow));
+        renderPage();
+        return;
+      }
+
+      th.dataset.sort = next;
+      th.setAttribute('aria-sort', next==='asc'?'ascending':'descending');
+
+      const mul = next==='asc'?1:-1;
+      rows.sort((a,b)=>{
+        let v1=textOf(a,colIdx), v2=textOf(b,colIdx);
+        if((type||'text')==='num'){
+          v1=parseFloat(v1.replace(/[^0-9.\-]/g,'')); if(isNaN(v1)) v1=-Infinity;
+          v2=parseFloat(v2.replace(/[^0-9.\-]/g,'')); if(isNaN(v2)) v2=-Infinity;
+        }else{
+          v1=(v1+'').toLowerCase();
+          v2=(v2+'').toLowerCase();
+        }
+        if(v1>v2) return 1*mul;
+        if(v1<v2) return -1*mul;
+        return 0;
+      });
+      rows.forEach(r=>tb.insertBefore(r, emptyRow));
+      th.classList.add('is-sorted');
+      renderPage();
+    }
+
+    function matchesFilter(tr){
+      return !tr.classList.contains('dw-empty') &&
+             tr.innerText.toLowerCase().includes(filter);
+    }
+
+    function renderPage(){
+      const ordered = Array.from(tb.rows).filter(r=>!r.classList.contains('dw-empty'));
+      const visible = ordered.filter(matchesFilter);
+      const total = visible.length;
+
+      ordered.forEach(r=>{ r.style.display='none'; });
+      let shown = [];
+
+      if(total===0){
+        if(emptyRow){
+          emptyRow.style.display='table-row';
+          emptyRow.firstElementChild.colSpan = heads.length;
+        }
+        if(statusEl) statusEl.textContent = "";
+        prevBtn.disabled = nextBtn.disabled = true;
+      }else{
+        if(emptyRow) emptyRow.style.display='none';
+        if(pageSize===0){
+          shown = visible;
+          if(statusEl) statusEl.textContent = "";
+          prevBtn.disabled = nextBtn.disabled = true;
+        }else{
+          const pages = Math.max(1, Math.ceil(total / pageSize));
+          page = Math.min(Math.max(1, page), pages);
+          const start = (page-1)*pageSize;
+          const end = start + pageSize;
+          shown = visible.slice(start,end);
+          if(statusEl) statusEl.textContent = "";
+          prevBtn.disabled = page<=1;
+          nextBtn.disabled = page>=pages;
+        }
+      }
+
+      shown.forEach(r=>{ r.style.display='table-row'; });
+    }
+
+    /* search + clear */
+    const syncClearBtn = ()=> field.classList.toggle('has-value', !!searchInput.value);
+    let t=null;
+    searchInput.addEventListener('input', e=>{
+      syncClearBtn();
+      clearTimeout(t);
+      t=setTimeout(()=>{
+        filter=(e.target.value||'').toLowerCase().trim();
+        page=1;
+        renderPage();
+      },120);
+    });
+    clearBtn.addEventListener('click', ()=>{
+      searchInput.value='';
+      syncClearBtn();
+      filter='';
+      page=1;
+      renderPage();
+      searchInput.focus();
+    });
+    syncClearBtn();
+
+    /* page size + nav */
+    sizeSel.addEventListener('change', e=>{
+      pageSize = parseInt(e.target.value,10) || 0;
+      page=1;
+      renderPage();
+    });
+    prevBtn.addEventListener('click', ()=>{
+      page--;
+      renderPage();
+    });
+    nextBtn.addEventListener('click', ()=>{
+      page++;
+      renderPage();
+    });
+
+    renderPage();
+
+    /* ---- Auto-resize messaging to parent (iframe) ---- */
+    function sendHeightToParent() {
+      try {
+        const height = document.body.scrollHeight;
+        window.parent.postMessage({ type: "resize-iframe", height: height, src: window.location.href }, "*");
+      } catch (e) {}
+    }
+    window.addEventListener("load", sendHeightToParent);
+    window.addEventListener("resize", sendHeightToParent);
+    const observer = new MutationObserver(sendHeightToParent);
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+
+    /* ---- Embed button in footer ---- */
+    const btn     = document.getElementById('bt-embed-btn');
+    const wrapper = document.getElementById('bt-embed-wrapper');
+    const ta      = document.getElementById('bt-embed-code');
+    const status  = document.getElementById('bt-copy-status');
+
+    if (btn && wrapper && ta && status){
+      function openPop(){
+        wrapper.style.display='block';
+        btn.setAttribute('aria-expanded','true');
+        ta.focus();
+        ta.select();
+        try{ document.execCommand('copy'); }catch(e){}
+        status.style.display='block';
+        setTimeout(()=>status.style.display='none', 2500);
+        sendHeightToParent();
+      }
+      function closePop(){
+        wrapper.style.display='none';
+        btn.setAttribute('aria-expanded','false');
+        sendHeightToParent();
+      }
+
+      btn.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        const isOpen = wrapper.style.display==='block';
+        if(isOpen) closePop(); else openPop();
+      });
+      document.addEventListener('click', (e)=>{
+        if(wrapper.style.display==='block' && !wrapper.contains(e.target) && !btn.contains(e.target)){
+          closePop();
+        }
+      });
+      document.addEventListener('keydown', (e)=>{
+        if(e.key==='Escape' && wrapper.style.display==='block'){ closePop(); btn.focus(); }
+      });
+    }
+  })();
+  </script>
+
+</section>
+</body>
+</html>
